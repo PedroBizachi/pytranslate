@@ -21,18 +21,24 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-@click.command()
+@click.command(context_settings={"ignore_unknown_options": True})
+@click.option("-v", "--verbose", is_flag=True, help="Enable verbose mode")
 @click.option(
+    "-s",
     "source",
+    default=settings.DEFAULT_SOURCE,
+    required=False,
     nargs=1,
     help=f"Provide the source language to be translated from. Defaults to {settings.DEFAULT_SOURCE}.",
 )
 @click.option(
+    "-t",
     "target",
+    default=settings.DEFAULT_TARGET,
+    required=False,
     nargs=1,
     help=f"Provide the target language to be translated to. Defaults to {settings.DEFAULT_TARGET}",
 )
-@click.option("--verbose", "-v", is_flag=True, help="Enable verbose mode")
 @click.argument("text", nargs=-1)
 def main(source: str, target: str, text: Collection[str], verbose: bool):
     if verbose:
@@ -42,9 +48,8 @@ def main(source: str, target: str, text: Collection[str], verbose: bool):
     logger.debug(f"Received source: {source}")
     logger.debug(f"Received target: {target}")
 
-    logger.info("Translating.")
     logger.debug(f"Translating from {source} to {target}.")
 
-    translated_text = translate(source=source, target=target, text=text)
+    translated_text = translate(text=text)
 
     click.echo(translated_text)
