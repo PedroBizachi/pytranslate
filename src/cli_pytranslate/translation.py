@@ -1,11 +1,11 @@
 from collections.abc import Collection
 
-from .config import translator
+from cli_pytranslate.config import settings, translator
 
 
 def translate(
-    source: str = "auto",
-    target: str = "en",
+    source: str = settings.DEFAULT_SOURCE,
+    target: str = settings.DEFAULT_TARGET,
     text: Collection[str] = "Olá do PyTranslate!",
 ) -> str:
 
