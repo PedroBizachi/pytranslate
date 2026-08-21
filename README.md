@@ -23,3 +23,5 @@
 - [ ] Test the performance between deep_translator package and API
 - [ ] Change from source/target flags to positional arguments
   - [ ] Must accept only one `@click.argument(nargs=-1)` and handle the source/target inside the code
+  - [ ] Can check first arg comparing to `"auto"` or `translator.is_language_supported`
+  - [ ] Can check second arg with `translator.is_language_supported`
