@@ -1,0 +1,77 @@
+[project]
+name = "cli-pytranslate"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "Pedro Bizachi", email = "pedro_bizachi@outlook.com" }]
+requires-python = ">=3.14"
+dependencies = [
+  "click>=8.4.2,<9.0",
+  "deep-translator>=1.11.4,<2.0",
+  "rich>=15.0.0,<16.0",
+]
+
+[project.scripts]
+pytranslate = "cli_pytranslate.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+  "bandit>=1.9.4",
+  "black>=26.5.1",
+  "mypy>=2.3.1",
+  "pydantic>=2.13.4",
+  "pydantic-settings>=2.15.0",
+  "pytest>=9.1.1",
+  "pytest-mock>=3.15.1",
+  "ruff>=0.16.3",
+]
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.bandit]
+exclude_dirs = [".venv", "__pycache__", "build", "dist"]
+
+[tool.bandit.assert_used]
+skips = ['*_test.py', '*test_*.py']
+
+[tool.pytest.ini_options]
+addopts = "-rA -s -v"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+build_command = "uv build"
+dist_path = "dist/"
+upload_to_pypi = false
+upload_to_release = true
+hvcs = "github"
+commit_message = "chore(release): {version} [skip ci]"
+
+[tool.semantic_release.branches.main]
+match = "main"
+prerelease = false
+
+[tool.semantic_release.changelog.default_templates]
+changelog_file = "CHANGELOG.md"
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = [
+  "build",
+  "chore",
+  "ci",
+  "docs",
+  "feat",
+  "fix",
+  "perf",
+  "style",
+  "refactor",
+  "test",
+]
+minor_tag = ["feat"]
+patch_tag = ["fix", "perf"]
