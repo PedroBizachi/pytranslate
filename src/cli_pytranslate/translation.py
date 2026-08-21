@@ -18,6 +18,13 @@ def translate(
         str_text += " "
         str_text += str
 
-    return translator.translate(  # pyright: ignore[reportUnknownMemberType]
-        text=str_text
-    )
+    result = ""
+
+    try:
+        result = translator.translate(  # pyright: ignore[reportUnknownMemberType]
+            text=str_text
+        )
+    except Exception as e:
+        raise e
+
+    return result
