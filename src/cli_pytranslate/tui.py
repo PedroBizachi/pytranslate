@@ -24,9 +24,9 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
         yield Translation_Panel(id="translate-panel")
         yield Footer()
 
-    def action_toggle_dark(self) -> None:
-        """An action to toggle dark mode."""
-        self.theme = (
+    def action_copy_translated_text(self) -> None:
+        self.notify("Translated text copied to clipboard!")
+
     def on_button_pressed(self, event: Submit_button.Pressed) -> None:
         event.control.loading = True
 
