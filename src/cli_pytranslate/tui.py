@@ -27,8 +27,16 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
     def action_toggle_dark(self) -> None:
         """An action to toggle dark mode."""
         self.theme = (
-            "textual-dark" if self.theme == "textual-light" else "textual-light"
-        )
+    def on_button_pressed(self, event: Submit_button.Pressed) -> None:
+        event.control.loading = True
+
+        panel = self.query_one("#translate-panel", Translation_Panel)
+
+        translated_text = panel.get_translation()
+
+        panel.set_translated_text(translated_text)
+
+        event.control.loading = False
 
 
 def main():
