@@ -50,6 +50,6 @@ def main(source: str, target: str, text: Collection[str], verbose: bool):
 
     logger.debug(f"Translating from {source} to {target}.")
 
-    translated_text = translate(text=text)
+    translated_text = translate(source=source, target=target, text=text)
 
     click.echo(translated_text)
