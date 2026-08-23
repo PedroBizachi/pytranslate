@@ -1,0 +1,57 @@
+Custom_Header {
+  dock: top;
+  height: 3;
+  padding: 0 3;
+  align: center middle;
+}
+
+#engine {
+  content-align: center middle;
+  width: auto;
+  color: $primary;
+  height: 3;
+}
+
+#submit {
+  dock: right;
+  background: $background;
+  content-align: center middle;
+  min_width: 13;
+  height: 3;
+  color: $primary;
+  border: round $primary;
+}
+
+#submit:hover {
+  border: round $accent;
+  color: $accent;
+}
+
+#submit:focus {
+  text-style: bold;
+  border: round $accent;
+  color: $accent;
+}
+
+Screen {
+  overflow: hidden;
+  padding: 1 0 0 0;
+}
+
+Translation_Panel {
+  height: 1fr;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 1 1 1;
+}
+
+TextArea {
+  width: 1fr;
+  height: 100%;
+  margin: 0 1;
+  padding: 0 2;
+}
+
+Footer {
+  background: $boost;
+}
