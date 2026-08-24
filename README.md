@@ -11,9 +11,9 @@
 - [x] Pre-defined user configurations
   - [ ] Uses GoogleTranslate by default, user can change it in the settings
   - [ ] Users can configure their own pro API to activate some extra translators
-- [ ] Build a beautifull TUI using Textual inspired on HyprMon
+- [x] Build a beautifull TUI using Textual inspired on HyprMon
   - [ ] 2 tabs, first for translation and second for configurations
-  - [ ] Layout inspired on Google/Deepl Translate
+  - [x] Layout inspired on Google/Deepl Translate
   - [ ] "Hot Reload" feature
   - [ ] AI tab with "deep-translator\[ai]"
 - [ ] Keep cli to translate docx and pdf files
