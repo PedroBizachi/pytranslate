@@ -1,8 +1,9 @@
+from textual import on
 from textual.app import App, ComposeResult
-from textual.widgets import Footer
+from textual.widgets import Button, Footer, TextArea
 
+from cli_pytranslate.translation import translate
 from cli_pytranslate.widgets.custom_header import Custom_Header
-from cli_pytranslate.widgets.submit_button import Submit_button
 from cli_pytranslate.widgets.translation_panel import Translation_Panel
 
 
@@ -27,16 +28,19 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
     def action_copy_translated_text(self) -> None:
         self.notify("Translated text copied to clipboard!")
 
-    def on_button_pressed(self, event: Submit_button.Pressed) -> None:
-        event.control.loading = True
-
+    @on(Button.Pressed, "#submit")
+    @on(TextArea.Changed, "#source")
+    def update_translation(self) -> None:
+        button = self.query_one("#submit", Button)
+        button.loading = True
         panel = self.query_one("#translate-panel", Translation_Panel)
+        try:
+            translated_text = translate(text=(panel.source.text,))
 
-        translated_text = panel.get_translation()
-
-        panel.set_translated_text(translated_text)
-
-        event.control.loading = False
+            panel.target.text = translated_text
+            panel.target.refresh(repaint=True)
+        finally:
+            button.loading = False
 
 
 def main():

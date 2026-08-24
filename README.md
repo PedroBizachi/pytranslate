@@ -14,7 +14,7 @@
 - [x] Build a beautifull TUI using Textual inspired on HyprMon
   - [ ] 2 tabs, first for translation and second for configurations
   - [x] Layout inspired on Google/Deepl Translate
-  - [ ] "Hot Reload" feature
+  - [x] "Hot Reload" feature
   - [ ] AI tab with "deep-translator\[ai]"
 - [ ] Keep cli to translate docx and pdf files
 
