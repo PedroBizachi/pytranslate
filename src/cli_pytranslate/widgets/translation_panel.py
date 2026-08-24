@@ -20,14 +20,14 @@ class Translation_Panel(HorizontalGroup):
         yield self.source
         yield self.target
 
-    def get_translation(self) -> str:
+    def get_translation(self) -> str | None:
         text = self.source.text.strip()
         if not text:
-            raise ValueError("Please provide some text to be translated")
+            return None
         return translate(text=(text,))
 
     def set_translated_text(self, text: str | None) -> None:
         if not text:
-            raise ValueError("Please provide some text to be translated")
+            return
         self.target.text = text
         self.target.refresh(repaint=True)
