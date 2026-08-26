@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     default_translator: BaseTranslator = GoogleTranslator()
     default_translator_name: str = "Google Translator"
     DEFAULT_SOURCE: str = "auto"
-    DEFAULT_TARGET: str = "en"
+    DEFAULT_TARGET: str = "english"
 
     def get_available_translators(self) -> list[str]:
         all = deep_translator.__all__

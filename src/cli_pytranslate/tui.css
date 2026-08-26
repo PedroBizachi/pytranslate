@@ -33,6 +33,11 @@ Custom_Header {
   color: $accent;
 }
 
+LoadingIndicator {
+  color: $accent;
+  background: $background;
+}
+
 Screen {
   overflow: hidden;
   padding: 1 0 0 0;
@@ -49,7 +54,14 @@ TextArea {
   width: 1fr;
   height: 100%;
   margin: 0 1;
-  padding: 0 2;
+  padding: 1 2;
+  border: tall $foreground 20%;
+  border-title-color: $foreground 100%;
+}
+
+TextArea:focus {
+  border: tall $border;
+  border-title-color: $border;
 }
 
 Footer {
