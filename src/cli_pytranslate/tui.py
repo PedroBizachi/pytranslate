@@ -30,8 +30,12 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
         yield Translation_Panel(id="translate-panel")
         yield Footer()
 
+    # === ACTIONS ===
+
     def action_copy_translated_text(self) -> None:
         self.notify("Translated text copied to clipboard!")
+
+    # === EVENTS ===
 
     @on(Button.Pressed, "#submit")
     def on_submit_pressed(self) -> None:
@@ -44,24 +48,7 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
 
         self._translation_timer = self.set_timer(0.5, self.update_translation)
 
-    def update_translation(self) -> None:
-        button = self.query_one("#submit", Button)
-        panel = self.query_one("#translate-panel", Translation_Panel)
-
-        button.loading = True
-
-        self.run_worker(
-            panel.get_translation, exclusive=True, thread=True, exit_on_error=False
-        )
-
-    def get_language(self, panel_id: str) -> str:
-        result: str
-        if panel_id == "source":
-            result = settings.DEFAULT_SOURCE
-        elif panel_id == "target":
-            result = settings.DEFAULT_TARGET
-        return result
-
+    # Handle worker related to the translation
     def on_worker_state_changed(self, event: Worker.StateChanged) -> None:
         button = self.query_one("#submit", Button)
         panel = self.query_one("#translate-panel", Translation_Panel)
@@ -86,6 +73,29 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
                 f"{self.theme_variables.get('text-error')}",
             )
 
+    # === METHODS ===
+
+    # Create worker to hot-update output translation
+    def update_translation(self) -> None:
+        button = self.query_one("#submit", Button)
+        panel = self.query_one("#translate-panel", Translation_Panel)
+
+        button.loading = True
+
+        self.run_worker(
+            panel.get_translation, exclusive=True, thread=True, exit_on_error=False
+        )
+
+    # Get the actual selected input/output translation languages
+    def get_language(self, panel_id: str) -> str:
+        result: str
+        if panel_id == "source":
+            result = settings.DEFAULT_SOURCE
+        elif panel_id == "target":
+            result = settings.DEFAULT_TARGET
+        return result
+
+    # Set border titles after UI initialization
     def on_mount(self) -> None:
         self.query_one("#source", TextArea).border_title = self.get_language("source")
         self.query_one("#target", TextArea).border_title = self.get_language("target")
