@@ -17,9 +17,9 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
     BINDINGS = [
         # TODO: Change ctrl+d to ctrl+c
         # TODO: ctrl+ENTER to apply translation
-        ("tab", "switch_panels", "Switch translation panels"),
+        # ("tab", "switch_panels", "Switch translation panels"),
         # Needs to be dinamic, on settings tab must have "Go to translate" description
-        ("ctrl+s", "switch_tabs", "Go to settings"),
+        # ("ctrl+s", "switch_tabs", "Go to settings"),
         ("c", "copy_translated_text", "Copy translated text"),
     ]
 
@@ -41,7 +41,7 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
         if self._translation_timer is not None:
             self._translation_timer.stop()
 
-        self._translation_timer = self.set_timer(0.5, self.update_translation())
+        self._translation_timer = self.set_timer(0.5, self.update_translation)
 
     def update_translation(self) -> None:
         button = self.query_one("#submit", Button)
