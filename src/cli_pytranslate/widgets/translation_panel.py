@@ -11,7 +11,6 @@ class Translation_Panel(HorizontalGroup):
 
     def compose(self) -> ComposeResult:
         self.source = TextArea(placeholder="Type to translate.", id="source")
-        self.source.border_title = f"Input Language: {settings.DEFAULT_SOURCE}"
         self.source.styles.border_title_align = "right"
         self.target = TextArea(
             read_only=True,
@@ -20,7 +19,6 @@ class Translation_Panel(HorizontalGroup):
             highlight_cursor_line=False,
             show_cursor=False,
         )
-        self.source.border_title = f"Output Language: {settings.DEFAULT_TARGET}"
         yield self.source
         yield self.target
 
@@ -28,7 +26,9 @@ class Translation_Panel(HorizontalGroup):
         text = self.source.text.strip()
         if not text:
             return None
-        result = translate(text=(text,))
+        result = translate(
+            source=settings.DEFAULT_SOURCE, target=settings.DEFAULT_TARGET, text=(text,)
+        )
         if "Error 500 (Server Error)" in result:
             raise Exception(
                 "There's something wrong with the engine provider. Please try again or maybe change the engine."
