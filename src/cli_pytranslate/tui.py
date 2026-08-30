@@ -6,6 +6,7 @@ from textual.timer import Timer
 from textual.widgets import Button, Footer, TextArea
 from textual.worker import Worker, WorkerState
 
+from cli_pytranslate.command_palette import LanguageProvider
 from cli_pytranslate.config import settings
 from cli_pytranslate.widgets.custom_header import Custom_Header
 from cli_pytranslate.widgets.translation_panel import Translation_Panel
@@ -14,6 +15,8 @@ from cli_pytranslate.widgets.translation_panel import Translation_Panel
 class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
     _translation_timer: Timer | None = None
     CSS_PATH = "tui.css"
+
+    COMMANDS = App.COMMANDS | {LanguageProvider}
 
     BINDINGS = [
         # TODO: Change ctrl+d to ctrl+c
@@ -87,18 +90,48 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
         )
 
     # Get the actual selected input/output translation languages
-    def get_language(self, panel_id: str) -> str:
-        result: str
+    def get_language(self, panel_id: str, full: bool = False) -> str:
+        if full:
+            if panel_id == "source":
+                return settings.DEFAULT_SOURCE_TITLE
+            if panel_id == "target":
+                return settings.DEFAULT_TARGET_TITLE
+
         if panel_id == "source":
-            result = settings.DEFAULT_SOURCE
+            return settings.DEFAULT_SOURCE
+        if panel_id == "target":
+            return settings.DEFAULT_TARGET
+        raise ValueError(f"Unknown panel id: {panel_id}")
+
+    # Set the selected language for input or output
+    def set_language(self, lang: str, panel_id: str) -> None:
+        if panel_id == "source":
+            settings.DEFAULT_SOURCE = lang
         elif panel_id == "target":
-            result = settings.DEFAULT_TARGET
-        return result
+            settings.DEFAULT_TARGET = lang
+        else:
+            raise ValueError(f"Unknown panel id: {panel_id}")
 
     # Set border titles after UI initialization
+    def refresh_language_title(
+        self,
+        title: str | None = None,
+        panel_id: str | None = None,
+        default: bool = False,
+    ) -> None:
+        if default:
+            self.query_one(
+                "#source", TextArea
+            ).border_title = settings.DEFAULT_SOURCE_TITLE
+            self.query_one(
+                "#target", TextArea
+            ).border_title = settings.DEFAULT_TARGET_TITLE
+            return
+
+        self.query_one(f"#{panel_id}", TextArea).border_title = title
+
     def on_mount(self) -> None:
-        self.query_one("#source", TextArea).border_title = self.get_language("source")
-        self.query_one("#target", TextArea).border_title = self.get_language("target")
+        self.refresh_language_title(default=True)
 
 
 def main():
