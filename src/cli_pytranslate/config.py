@@ -1,3 +1,6 @@
+import re
+from typing import cast
+
 import deep_translator  # pyright: ignore[reportMissingTypeStubs]
 from deep_translator import (  # pyright: ignore[reportMissingTypeStubs]
     BaiduTranslator,
@@ -30,15 +33,19 @@ class Settings(BaseSettings):
     DEFAULT_SOURCE_TITLE: str = "Auto"
     DEFAULT_TARGET_TITLE: str = "English"
 
-    def get_available_translators(self) -> list[str]:
-        all = deep_translator.__all__
-        result = []
+    def get_available_translators(self) -> list[tuple[str, str]]:
+        all_translators = deep_translator.__all__
+        result = cast(list[tuple[str, str]], [])
 
-        for item in all:
+        for item in all_translators:
             if "Translator" in item:
-                result.append(item)  # pyright: ignore[reportUnknownMemberType]
+                display_name = ""
+                for word in re.findall("[a-zA-Z][^A-Z]*", item):
+                    display_name += word
+                    display_name += " "
+                result.append((display_name.strip(), item))
 
-        return result  # pyright: ignore[reportUnknownVariableType]
+        return result
 
     def set_default_translator(self, name: str) -> None:
         all = deep_translator.__all__
