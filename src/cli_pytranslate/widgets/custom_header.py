@@ -1,4 +1,6 @@
-from typing import cast
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, cast
 
 from textual import on
 from textual.app import ComposeResult
@@ -7,6 +9,9 @@ from textual.widgets import Label, Select
 
 from cli_pytranslate.config import settings
 from cli_pytranslate.widgets.submit_button import Submit_button
+
+if TYPE_CHECKING:
+    from cli_pytranslate.tui import PyTranslate
 
 
 class Custom_Header(Horizontal):
@@ -25,5 +30,15 @@ class Custom_Header(Horizontal):
 
     @on(Select.Changed)
     def select_changed(self, event: Select.Changed) -> None:
+        app = cast("PyTranslate", self.app)
         translator = cast(str, event.value)
+
+        if "Lingue" or "Pons" in translator:
+            self.notify(
+                "This engine doesn't support 'auto' language detection. Input language set to 'english'.",
+                severity="warning",
+            )
+            app.set_language("english", "source")
+            app.refresh_language_title("English", "source")
+
         settings.set_default_translator(translator)
