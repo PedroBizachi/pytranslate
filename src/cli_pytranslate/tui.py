@@ -18,6 +18,8 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
 
     COMMANDS = App.COMMANDS | {LanguageProvider}
 
+    AUTO_FOCUS = "#source"
+
     BINDINGS = [
         # TODO: Change ctrl+d to ctrl+c
         # TODO: ctrl+ENTER to apply translation
