@@ -20,7 +20,7 @@ class LanguageProvider(Provider):
     def commands(self) -> list[tuple[str, str, str]]:
         languages = cast(
             dict[str, str],
-            settings.default_translator.get_supported_languages(as_dict=True),  # pyright: ignore[reportUnknownMemberType]
+            settings.translator.get_supported_languages(as_dict=True),  # pyright: ignore[reportUnknownMemberType]
         )
 
         commands: list[tuple[str, str, str]] = []
