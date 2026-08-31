@@ -34,10 +34,10 @@ class Settings(BaseSettings):
     DEFAULT_TARGET_TITLE: str = "English"
 
     def get_available_translators(self) -> list[tuple[str, str]]:
-        all_translators = deep_translator.__all__
+        available_translators = deep_translator.__all__[0:4]
         result = cast(list[tuple[str, str]], [])
 
-        for item in all_translators:
+        for item in available_translators:
             if "Translator" in item:
                 display_name = ""
                 for word in re.findall("[a-zA-Z][^A-Z]*", item):
