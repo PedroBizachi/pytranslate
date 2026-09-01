@@ -1,18 +1,22 @@
 [project]
 name = "cli-pytranslate"
 version = "0.1.0"
-description = "Add your description here"
+description = "A beautiful, modern and delightful translator TUI written in Python."
 readme = "README.md"
-authors = [{ name = "Pedro Bizachi", email = "pedro_bizachi@outlook.com" }]
-requires-python = ">=3.14"
+authors = [{ name = "Pedro Bizachi", email = "bizak.dev@outlook.com" }]
+requires-python = ">=3.10"
 dependencies = [
   "click>=8.4.2,<9.0",
   "deep-translator>=1.11.4,<2.0",
   "rich>=15.0.0,<16.0",
+  "textual>=8.2.8,<9.0",
 ]
 
 [project.scripts]
 pytranslate = "cli_pytranslate.cli:main"
+
+[project.gui-scripts]
+pyt = "cli_pytranslate.tui:main"
 
 [build-system]
 requires = ["uv_build>=0.12.3,<0.13.0"]
@@ -21,19 +25,24 @@ build-backend = "uv_build"
 [dependency-groups]
 dev = [
   "bandit>=1.9.4",
+  "basedpyright>=1.39.10",
   "black>=26.5.1",
-  "mypy>=2.3.1",
   "pydantic>=2.13.4",
   "pydantic-settings>=2.15.0",
   "pytest>=9.1.1",
   "pytest-mock>=3.15.1",
   "ruff>=0.16.3",
+  "textual-dev>=1.8.0",
 ]
 
-[tool.mypy]
-warn_return_any = true
-warn_unused_configs = true
-ignore_missing_imports = true
+[tool.basedpyright]
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+reportMissingImports = false
+
+[tool.black]
+line_length = 120
+target-version = ['py314']
 
 [tool.bandit]
 exclude_dirs = [".venv", "__pycache__", "build", "dist"]

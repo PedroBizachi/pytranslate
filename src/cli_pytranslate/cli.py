@@ -26,18 +26,18 @@ logger = logging.getLogger(__name__)
 @click.option(
     "-s",
     "source",
-    default=settings.DEFAULT_SOURCE,
+    default=settings.source,
     required=False,
     nargs=1,
-    help=f"Provide the source language to be translated from. Defaults to {settings.DEFAULT_SOURCE}.",
+    help=f"Provide the source language to be translated from. Defaults to {settings.source}.",
 )
 @click.option(
     "-t",
     "target",
-    default=settings.DEFAULT_TARGET,
+    default=settings.target,
     required=False,
     nargs=1,
-    help=f"Provide the target language to be translated to. Defaults to {settings.DEFAULT_TARGET}",
+    help=f"Provide the target language to be translated to. Defaults to {settings.target}",
 )
 @click.argument("text", nargs=-1)
 def main(source: str, target: str, text: Collection[str], verbose: bool):
@@ -50,6 +50,6 @@ def main(source: str, target: str, text: Collection[str], verbose: bool):
 
     logger.debug(f"Translating from {source} to {target}.")
 
-    translated_text = translate(text=text)
+    translated_text = translate(source=source, target=target, text=text)
 
     click.echo(translated_text)
