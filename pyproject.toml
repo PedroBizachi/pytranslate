@@ -1,5 +1,5 @@
 [project]
-name = "cli-pytranslate"
+name = "pytranslate-tui"
 version = "1.0.0"
 description = "A beautiful, modern and delightful translator TUI written in Python."
 readme = "README.md"
