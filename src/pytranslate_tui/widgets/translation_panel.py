@@ -2,8 +2,8 @@ from textual.app import ComposeResult
 from textual.containers import HorizontalGroup
 from textual.widgets import TextArea
 
-from cli_pytranslate.config import settings
-from cli_pytranslate.translation import translate
+from pytranslate_tui.config import settings
+from pytranslate_tui.translation import translate
 
 
 class Translation_Panel(HorizontalGroup):

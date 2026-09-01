@@ -7,14 +7,14 @@ from textual.timer import Timer
 from textual.widgets import Button, Footer, TextArea
 from textual.worker import Worker, WorkerState
 
-from cli_pytranslate.command_palette import (
+from pytranslate_tui.command_palette import (
     InputLanguageProvider,
     LanguageProvider,
     OutputLanguageProvider,
 )
-from cli_pytranslate.config import settings
-from cli_pytranslate.widgets.custom_header import Custom_Header
-from cli_pytranslate.widgets.translation_panel import Translation_Panel
+from pytranslate_tui.config import settings
+from pytranslate_tui.widgets.custom_header import Custom_Header
+from pytranslate_tui.widgets.translation_panel import Translation_Panel
 
 
 class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
@@ -108,7 +108,9 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
 
         button.loading = True
 
-        self.run_worker(panel.get_translation, exclusive=True, thread=True, exit_on_error=False)
+        self.run_worker(
+            panel.get_translation, exclusive=True, thread=True, exit_on_error=False
+        )
 
     # Get the actual selected input/output translation languages
     def get_language(self, panel_id: str, full: bool = False) -> str:
@@ -142,8 +144,12 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
         default: bool = False,
     ) -> None:
         if default:
-            self.query_one("#source", TextArea).border_title = settings.DEFAULT_SOURCE_TITLE
-            self.query_one("#target", TextArea).border_title = settings.DEFAULT_TARGET_TITLE
+            self.query_one(
+                "#source", TextArea
+            ).border_title = settings.DEFAULT_SOURCE_TITLE
+            self.query_one(
+                "#target", TextArea
+            ).border_title = settings.DEFAULT_TARGET_TITLE
             return
 
         self.query_one(f"#{panel_id}", TextArea).border_title = title

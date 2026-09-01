@@ -4,8 +4,8 @@ from collections.abc import Collection
 import click
 from rich.logging import RichHandler
 
-from cli_pytranslate.config import settings
-from cli_pytranslate.translation import translate
+from pytranslate_tui.config import settings
+from pytranslate_tui.translation import translate
 
 logging.basicConfig(
     level=logging.INFO,

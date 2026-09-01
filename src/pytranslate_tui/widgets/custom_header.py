@@ -7,11 +7,11 @@ from textual.app import ComposeResult
 from textual.containers import Container, Horizontal
 from textual.widgets import Label, Select
 
-from cli_pytranslate.config import settings
-from cli_pytranslate.widgets.submit_button import Submit_button
+from pytranslate_tui.config import settings
+from pytranslate_tui.widgets.submit_button import Submit_button
 
 if TYPE_CHECKING:
-    from cli_pytranslate.tui import PyTranslate
+    from pytranslate_tui.tui import PyTranslate
 
 
 class Custom_Header(Horizontal):
