@@ -24,9 +24,7 @@ def translate(
     result = ""
 
     try:
-        result = settings.translator.translate(  # pyright: ignore[reportUnknownMemberType]
-            text=str_text
-        )
+        result = settings.translator.translate(text=str_text)  # pyright: ignore[reportUnknownMemberType]
     except Exception as e:
         raise e
 
