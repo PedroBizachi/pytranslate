@@ -1,6 +1,6 @@
 [project]
 name = "cli-pytranslate"
-version = "0.1.0"
+version = "1.0.0"
 description = "A beautiful, modern and delightful translator TUI written in Python."
 readme = "README.md"
 authors = [{ name = "Pedro Bizachi", email = "bizak.dev@outlook.com" }]
