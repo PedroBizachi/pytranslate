@@ -1,6 +1,6 @@
 from collections.abc import Collection
 
-from cli_pytranslate.config import settings, translator
+from cli_pytranslate.config import settings
 
 
 def translate(
@@ -12,8 +12,8 @@ def translate(
     if not isinstance(text, Collection) or not text or len(text) == 0:
         raise ValueError("Please provide some text to be translated")
 
-    translator.source = source
-    translator.target = target
+    settings.translator.source = source
+    settings.translator.target = target
 
     str_text = ""
 
@@ -24,7 +24,7 @@ def translate(
     result = ""
 
     try:
-        result = translator.translate(  # pyright: ignore[reportUnknownMemberType]
+        result = settings.translator.translate(  # pyright: ignore[reportUnknownMemberType]
             text=str_text
         )
     except Exception as e:

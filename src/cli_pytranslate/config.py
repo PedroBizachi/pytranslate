@@ -84,4 +84,3 @@ class Settings(BaseSettings):
 
 # Initialize once to share across the application
 settings = Settings()
-translator = settings.translator
