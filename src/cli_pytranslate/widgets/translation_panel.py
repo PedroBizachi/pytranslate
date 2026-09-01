@@ -28,7 +28,7 @@ class Translation_Panel(HorizontalGroup):
             return None
         result = translate(source=settings.source, target=settings.target, text=(text,))
         if "Error 500 (Server Error)" in result:
-            raise Exception(
+            raise ValueError(
                 "There's something wrong with the engine provider. Please try again or maybe change the engine."
             )
         return result
