@@ -10,7 +10,7 @@
 - [x] Build a beautiful TUI using Textual inspired on Posting, LazyGit, HyprMon, etc.
   - [x] Layout inspired on Google/Deepl Translate
   - [x] "Hot Reload" feature
-  - [ ] Keymap to change source/target languages
+  - [x] Keymap to change source/target languages
   - [ ] Keymap to copy translated text
 
 ## v2

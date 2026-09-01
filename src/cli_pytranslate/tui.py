@@ -2,11 +2,16 @@ from typing import cast
 
 from textual import on
 from textual.app import App, ComposeResult
+from textual.command import CommandPalette
 from textual.timer import Timer
 from textual.widgets import Button, Footer, TextArea
 from textual.worker import Worker, WorkerState
 
-from cli_pytranslate.command_palette import LanguageProvider
+from cli_pytranslate.command_palette import (
+    InputLanguageProvider,
+    LanguageProvider,
+    OutputLanguageProvider,
+)
 from cli_pytranslate.config import settings
 from cli_pytranslate.widgets.custom_header import Custom_Header
 from cli_pytranslate.widgets.translation_panel import Translation_Panel
@@ -29,6 +34,8 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
         ("c", "copy_translated_text", "Copy translated text"),
         # TODO: Remove ctrl+enter add a new line on textarea
         ("ctrl+enter", "quick_submit_translation", "Submit translation"),
+        ("ctrl+s", "change_source_language", "Change Source Language"),
+        ("ctrl+t", "change_target_language", "Change Target Language"),
     ]
 
     def compose(self) -> ComposeResult:
@@ -44,6 +51,12 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
 
     def action_quick_submit_translation(self) -> None:
         self.query_one("#submit", Button).action_press()
+
+    def action_change_source_language(self) -> None:
+        self.push_screen(CommandPalette(providers=[InputLanguageProvider]))
+
+    def action_change_target_language(self) -> None:
+        self.push_screen(CommandPalette(providers=[OutputLanguageProvider]))
 
     # === EVENTS ===
 
