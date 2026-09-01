@@ -94,4 +94,4 @@ Before you submit a pull request, check that it meets these guidelines:
 
 1. The pull request should include any relevant tests;
 2. If the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring;
-3. Pull requests are automatically tested on GitHub for compatibility with Python version >=3.9. Please review your test results and ensure your request passes all tests.
+3. Pull requests are automatically tested on GitHub for compatibility with Python version >=3.10. Please review your test results and ensure your request passes all tests.
