@@ -28,12 +28,12 @@ class Custom_Header(Horizontal):
             yield Label("PyTranslate", id="app-title")
         yield Submit_button(id="submit")
 
-    @on(Select.Changed)
+    @on(Select.Changed, "#engine")
     def select_changed(self, event: Select.Changed) -> None:
         app = cast("PyTranslate", self.app)
         translator = cast(str, event.value)
 
-        if "Lingue" or "Pons" in translator:
+        if "Lingue" in translator or "Pons" in translator:
             self.notify(
                 "This engine doesn't support 'auto' language detection. Input language set to 'english'.",
                 severity="warning",
