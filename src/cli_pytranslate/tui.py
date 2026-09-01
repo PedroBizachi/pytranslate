@@ -14,7 +14,7 @@ from cli_pytranslate.widgets.translation_panel import Translation_Panel
 
 class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
     _translation_timer: Timer | None = None
-    CSS_PATH = "tui.css"
+    CSS_PATH = "tui.scss"
 
     COMMANDS = App.COMMANDS | {LanguageProvider}
 
@@ -27,6 +27,8 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
         # Needs to be dinamic, on settings tab must have "Go to translate" description
         # ("ctrl+s", "switch_tabs", "Go to settings"),
         ("c", "copy_translated_text", "Copy translated text"),
+        # TODO: Remove ctrl+enter add a new line on textarea
+        ("ctrl+enter", "quick_submit_translation", "Submit translation"),
     ]
 
     def compose(self) -> ComposeResult:
@@ -39,6 +41,9 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
 
     def action_copy_translated_text(self) -> None:
         self.notify("Translated text copied to clipboard!")
+
+    def action_quick_submit_translation(self) -> None:
+        self.query_one("#submit", Button).action_press()
 
     # === EVENTS ===
 
