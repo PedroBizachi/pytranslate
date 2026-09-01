@@ -64,7 +64,7 @@ class OutputLanguageProvider(Provider):
         for language, lang in self.commands:
             yield DiscoveryHit(
                 display=language,
-                command=partial(self.set_language, language, "output", lang),
+                command=partial(self.set_language, language, "target", lang),
             )
 
     async def search(self, query: str) -> Hits:
@@ -75,7 +75,7 @@ class OutputLanguageProvider(Provider):
                 yield Hit(
                     score,
                     matcher.highlight(language),
-                    command=partial(self.set_language, language, "output", lang),
+                    command=partial(self.set_language, language, "target", lang),
                 )
 
     @property
@@ -91,8 +91,12 @@ class OutputLanguageProvider(Provider):
             for language, lang in languages.items():
                 commands.append((language.capitalize(), language))
 
-        for language, lang in languages.items():
-            commands.append((language.capitalize(), lang))
+        if "Pons" in settings.translator_name:
+            for lang, language in languages.items():
+                commands.append((language.capitalize(), lang))
+        else:
+            for language, lang in languages.items():
+                commands.append((language.capitalize(), lang))
         return commands
 
     def set_language(self, title: str, panel_id: str, lang: str) -> None:
@@ -107,7 +111,7 @@ class InputLanguageProvider(Provider):
         for language, lang in self.commands:
             yield DiscoveryHit(
                 display=language,
-                command=partial(self.set_language, language, "input", lang),
+                command=partial(self.set_language, language, "source", lang),
             )
 
     async def search(self, query: str) -> Hits:
@@ -118,7 +122,7 @@ class InputLanguageProvider(Provider):
                 yield Hit(
                     score,
                     matcher.highlight(language),
-                    command=partial(self.set_language, language, "input", lang),
+                    command=partial(self.set_language, language, "source", lang),
                 )
 
     @property
@@ -134,8 +138,12 @@ class InputLanguageProvider(Provider):
             for language, lang in languages.items():
                 commands.append((language.capitalize(), language))
 
-        for language, lang in languages.items():
-            commands.append((language.capitalize(), lang))
+        if "Pons" in settings.translator_name:
+            for lang, language in languages.items():
+                commands.append((language.capitalize(), lang))
+        else:
+            for language, lang in languages.items():
+                commands.append((language.capitalize(), lang))
         return commands
 
     def set_language(self, title: str, panel_id: str, lang: str) -> None:
