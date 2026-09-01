@@ -47,6 +47,9 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
     # === ACTIONS ===
 
     def action_copy_translated_text(self) -> None:
+        panel = self.query_one("#target", TextArea)
+        panel.action_select_all()
+        panel.action_copy()
         self.notify("Translated text copied to clipboard!")
 
     def action_quick_submit_translation(self) -> None:

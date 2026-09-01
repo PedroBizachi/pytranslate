@@ -11,7 +11,7 @@
   - [x] Layout inspired on Google/Deepl Translate
   - [x] "Hot Reload" feature
   - [x] Keymap to change source/target languages
-  - [ ] Keymap to copy translated text
+  - [x] Keymap to copy translated text
 
 ## v2
 
