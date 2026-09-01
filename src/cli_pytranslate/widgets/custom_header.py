@@ -23,6 +23,7 @@ class Custom_Header(Horizontal):
             options=settings.get_available_translators(),
             value=settings.get_available_translators()[0][1],
             id="engine",
+            allow_blank=False,
         )
         with Container(id="app-title-container"):
             yield Label("PyTranslate", id="app-title")
@@ -31,7 +32,10 @@ class Custom_Header(Horizontal):
     @on(Select.Changed, "#engine")
     def select_changed(self, event: Select.Changed) -> None:
         app = cast("PyTranslate", self.app)
-        translator = cast(str, event.value)
+        translator = event.value
+
+        if not isinstance(translator, str):
+            return
 
         if "Lingue" in translator or "Pons" in translator:
             self.notify(
@@ -39,6 +43,7 @@ class Custom_Header(Horizontal):
                 severity="warning",
             )
             app.set_language("english", "source")
+            app.set_language("english", "target")
             app.refresh_language_title("English", "source")
 
-        settings.set_default_translator(translator)
+        settings.set_translator(translator)
