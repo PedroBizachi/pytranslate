@@ -26,9 +26,7 @@ class Translation_Panel(HorizontalGroup):
         text = self.source.text.strip()
         if not text:
             return None
-        result = translate(
-            source=settings.DEFAULT_SOURCE, target=settings.DEFAULT_TARGET, text=(text,)
-        )
+        result = translate(source=settings.source, target=settings.target, text=(text,))
         if "Error 500 (Server Error)" in result:
             raise Exception(
                 "There's something wrong with the engine provider. Please try again or maybe change the engine."

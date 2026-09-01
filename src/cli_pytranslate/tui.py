@@ -121,17 +121,18 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
                 return settings.DEFAULT_TARGET_TITLE
 
         if panel_id == "source":
-            return settings.DEFAULT_SOURCE
+            return settings.source
         if panel_id == "target":
-            return settings.DEFAULT_TARGET
+            return settings.target
         raise ValueError(f"Unknown panel id: {panel_id}")
 
+    # TODO: This doesn't seems to be right, update logic here
     # Set the selected language for input or output
     def set_language(self, lang: str, panel_id: str) -> None:
         if panel_id == "source":
-            settings.DEFAULT_SOURCE = lang
+            settings.source = lang
         elif panel_id == "target":
-            settings.DEFAULT_TARGET = lang
+            settings.target = lang
         else:
             raise ValueError(f"Unknown panel id: {panel_id}")
 

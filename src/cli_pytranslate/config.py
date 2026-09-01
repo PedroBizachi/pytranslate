@@ -20,9 +20,7 @@ class Settings(BaseSettings):
     DEEPL_API: str = Field(default="provide_API_key")
     translator: BaseTranslator = GoogleTranslator()
     translator_name: str = "Google Translator"
-    DEFAULT_SOURCE: str = "auto"
     source: str = "auto"
-    DEFAULT_TARGET: str = "en"
     target: str = "en"
     DEFAULT_SOURCE_TITLE: str = "Auto"
     DEFAULT_TARGET_TITLE: str = "English"

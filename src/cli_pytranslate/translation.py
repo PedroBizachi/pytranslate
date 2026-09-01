@@ -4,8 +4,8 @@ from cli_pytranslate.config import settings
 
 
 def translate(
-    source: str = settings.DEFAULT_SOURCE,
-    target: str = settings.DEFAULT_TARGET,
+    source: str = settings.source,
+    target: str = settings.target,
     text: Collection[str] | None = "Olá do PyTranslate!",
 ) -> str:
 
