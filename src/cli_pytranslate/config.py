@@ -3,18 +3,10 @@ from typing import cast
 
 import deep_translator  # pyright: ignore[reportMissingTypeStubs]
 from deep_translator import (  # pyright: ignore[reportMissingTypeStubs]
-    BaiduTranslator,
-    ChatGptTranslator,
-    DeeplTranslator,
     GoogleTranslator,
-    LibreTranslator,
     LingueeTranslator,
-    MicrosoftTranslator,
     MyMemoryTranslator,
-    PapagoTranslator,
     PonsTranslator,
-    QcriTranslator,
-    YandexTranslator,
 )
 from deep_translator.base import (  # pyright: ignore[reportMissingTypeStubs]
     BaseTranslator,
@@ -29,7 +21,9 @@ class Settings(BaseSettings):
     translator: BaseTranslator = GoogleTranslator()
     translator_name: str = "Google Translator"
     DEFAULT_SOURCE: str = "auto"
+    source: str = "auto"
     DEFAULT_TARGET: str = "en"
+    target: str = "en"
     DEFAULT_SOURCE_TITLE: str = "Auto"
     DEFAULT_TARGET_TITLE: str = "English"
 
@@ -47,7 +41,7 @@ class Settings(BaseSettings):
 
         return result
 
-    def set_default_translator(self, name: str) -> None:
+    def set_translator(self, name: str) -> None:
         all = deep_translator.__all__
         if name == all[0]:
             self.translator = GoogleTranslator()
@@ -56,35 +50,36 @@ class Settings(BaseSettings):
             self.translator = PonsTranslator("en")
             self.translator_name = "Pons Translator"
         if name == all[2]:
-            self.translator = LingueeTranslator()
+            self.translator = LingueeTranslator("english", "english")
             self.translator_name = "Linguee Translator"
         if name == all[3]:
-            self.translator = MyMemoryTranslator()
+            self.translator = MyMemoryTranslator(target="en-US")
             self.translator_name = "MyMemory Translator"
-        if name == all[4]:
-            self.translator = YandexTranslator()
-            self.translator_name = "Yandex Translator"
-        if name == all[5]:
-            self.translator = MicrosoftTranslator()
-            self.translator_name = "Microsoft Translator"
-        if name == all[6]:
-            self.translator = QcriTranslator()
-            self.translator_name = "Qcri Translator"
-        if name == all[7]:
-            self.translator = DeeplTranslator()
-            self.translator_name = "Deepl Translator"
-        if name == all[8]:
-            self.translator = LibreTranslator()
-            self.translator_name = "Libre Translator"
-        if name == all[9]:
-            self.translator = PapagoTranslator()
-            self.translator_name = "Papago Translator"
-        if name == all[10]:
-            self.translator = ChatGptTranslator()
-            self.translator_name = "ChatGpt Translator"
-        if name == all[11]:
-            self.translator = BaiduTranslator()
-            self.translator_name = "Baidu Translator"
+        # Not implemented yet
+        # if name == all[4]:
+        #     self.translator = YandexTranslator()
+        #     self.translator_name = "Yandex Translator"
+        # if name == all[5]:
+        #     self.translator = MicrosoftTranslator()
+        #     self.translator_name = "Microsoft Translator"
+        # if name == all[6]:
+        #     self.translator = QcriTranslator()
+        #     self.translator_name = "Qcri Translator"
+        # if name == all[7]:
+        #     self.translator = DeeplTranslator()
+        #     self.translator_name = "Deepl Translator"
+        # if name == all[8]:
+        #     self.translator = LibreTranslator()
+        #     self.translator_name = "Libre Translator"
+        # if name == all[9]:
+        #     self.translator = PapagoTranslator()
+        #     self.translator_name = "Papago Translator"
+        # if name == all[10]:
+        #     self.translator = ChatGptTranslator()
+        #     self.translator_name = "ChatGpt Translator"
+        # if name == all[11]:
+        #     self.translator = BaiduTranslator()
+        #     self.translator_name = "Baidu Translator"
 
 
 # Initialize once to share across the application
