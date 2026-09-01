@@ -1,27 +1,51 @@
-# pytranslate
+# PyTranslate
 
-[EDIT] A super-simple cli translation tool
+A beautiful, modern and delightful translator TUI written in Python.
 
-## Roadmap
+### Description
 
-- [x] Translate text
-- [x] Accept input from terminal
-  - [-] 2 args runs with source=auto target=arg1 text=arg2
-  - [-] 3 args runs with source=arg1 target=arg2 text=arg3
-- [x] Pre-defined user configurations
-  - [ ] Uses GoogleTranslate by default, user can change it in the settings
-  - [ ] Users can configure their own pro API to activate some extra translators
-- [ ] Build a beautifull TUI using Textual inspired on HyprMon
-  - [ ] 2 tabs, first for translation and second for configurations
-  - [ ] Layout inspired on Google/Deepl Translate
-  - [ ] "Hot Reload" feature
-  - [ ] AI tab with "deep-translator\[ai]"
-- [ ] Keep cli to translate docx and pdf files
+PyTranslate was built to solve a problem I had. Every time I needed to translate an unknown word, especially while it was in my production environment, there was all the complexity of opening a browser, opening the desired translation website and finally translating. PyTranslate solves this by already being easily located in my production environment. I can easily translate anything and quickly use it. In fact, this text was translated from Portuguese using PyTranslate!
 
-## Future changes
+## Install
 
-- [ ] Test the performance between deep_translator package and API
-- [ ] Change from source/target flags to positional arguments
-  - [ ] Must accept only one `@click.argument(nargs=-1)` and handle the source/target inside the code
-  - [ ] Can check first arg comparing to `"auto"` or `translator.is_language_supported`
-  - [ ] Can check second arg with `translator.is_language_supported`
+1. Clone this repo locally.
+
+```
+git clone https://github.com/PedroBizachi/pytranslate.git
+```
+
+2. Install UV package manager for python.
+
+MacOS/Linux:
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Windows:
+Follow the instructions on the official website [here](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2).
+
+3. Build a virtual environment.
+
+```
+uv venv .venv
+```
+
+4. Let UV download the necessary dependencies.
+
+```
+uv sync
+```
+
+5. Run the application.
+
+```
+uv run pyt
+```
+
+## See also
+
+[Roadmap](./roadmap.md)
+[How to contribute](./CONTRIBUTING.md)
+[deep-translator](https://github.com/nidhaloff/deep-translator)
+[Textual](https://github.com/textualize/textual/)
+[Posting](https://github.com/darrenburns/posting)
