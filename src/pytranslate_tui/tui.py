@@ -108,9 +108,7 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
 
         button.loading = True
 
-        self.run_worker(
-            panel.get_translation, exclusive=True, thread=True, exit_on_error=False
-        )
+        self.run_worker(panel.get_translation, exclusive=True, thread=True, exit_on_error=False)
 
     # Get the actual selected input/output translation languages
     def get_language(self, panel_id: str, full: bool = False) -> str:
@@ -144,12 +142,8 @@ class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]
         default: bool = False,
     ) -> None:
         if default:
-            self.query_one(
-                "#source", TextArea
-            ).border_title = settings.DEFAULT_SOURCE_TITLE
-            self.query_one(
-                "#target", TextArea
-            ).border_title = settings.DEFAULT_TARGET_TITLE
+            self.query_one("#source", TextArea).border_title = settings.DEFAULT_SOURCE_TITLE
+            self.query_one("#target", TextArea).border_title = settings.DEFAULT_TARGET_TITLE
             return
 
         self.query_one(f"#{panel_id}", TextArea).border_title = title
