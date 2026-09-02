@@ -7,14 +7,14 @@ from textual.timer import Timer
 from textual.widgets import Button, Footer, TextArea
 from textual.worker import Worker, WorkerState
 
-from cli_pytranslate.command_palette import (
+from pytranslate_tui.command_palette import (
     InputLanguageProvider,
     LanguageProvider,
     OutputLanguageProvider,
 )
-from cli_pytranslate.config import settings
-from cli_pytranslate.widgets.custom_header import Custom_Header
-from cli_pytranslate.widgets.translation_panel import Translation_Panel
+from pytranslate_tui.config import settings
+from pytranslate_tui.widgets.custom_header import Custom_Header
+from pytranslate_tui.widgets.translation_panel import Translation_Panel
 
 
 class PyTranslate(App):  # pyright: ignore[reportMissingTypeArgument]

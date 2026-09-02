@@ -5,10 +5,10 @@ from typing import TYPE_CHECKING, cast
 
 from textual.command import CommandPalette, DiscoveryHit, Hit, Hits, Provider
 
-from cli_pytranslate.config import settings
+from pytranslate_tui.config import settings
 
 if TYPE_CHECKING:
-    from cli_pytranslate.tui import PyTranslate
+    from pytranslate_tui.tui import PyTranslate
 
 
 class LanguageProvider(Provider):
