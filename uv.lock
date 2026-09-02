@@ -1434,6 +1434,8 @@ source = { editable = "." }
 dependencies = [
     { name = "click" },
     { name = "deep-translator" },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
     { name = "rich" },
     { name = "textual" },
 ]
@@ -1455,6 +1457,8 @@ dev = [
 requires-dist = [
     { name = "click", specifier = ">=8.4.2,<9.0" },
     { name = "deep-translator", specifier = ">=1.11.4,<2.0" },
+    { name = "pydantic", specifier = ">=2.13.4" },
+    { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "rich", specifier = ">=15.0.0,<16.0" },
     { name = "textual", specifier = ">=8.2.8,<9.0" },
 ]
