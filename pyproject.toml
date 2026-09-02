@@ -79,7 +79,7 @@ allowed_tags = [
   "fix",
   "perf",
   "style",
-  "refactor",
+  "ref",
   "test",
 ]
 minor_tag = ["feat"]
