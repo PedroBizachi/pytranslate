@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.2 (2026-09-02)
+
+### Bug Fixes
+
+- Add missing runtime dependencies
+  ([`a4a515f`](https://github.com/PedroBizachi/pytranslate/commit/a4a515fe1905859407552cbba53ac7783ad67c41))
+
+
 ## v1.0.1 (2026-09-02)
 
 ### Bug Fixes
