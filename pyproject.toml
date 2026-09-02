@@ -13,10 +13,10 @@ dependencies = [
 ]
 
 [project.scripts]
-pytranslate = "cli_pytranslate.cli:main"
+pytranslate = "pytranslate_tui.cli:main"
 
 [project.gui-scripts]
-pyt = "cli_pytranslate.tui:main"
+pyt = "pytranslate_tui.tui:main"
 
 [build-system]
 requires = ["uv_build>=0.12.3,<0.13.0"]

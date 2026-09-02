@@ -1,6 +1,6 @@
 from collections.abc import Collection
 
-from cli_pytranslate.config import settings
+from pytranslate_tui.config import settings
 
 
 def translate(
